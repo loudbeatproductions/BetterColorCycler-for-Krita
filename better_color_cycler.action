@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionCollection version="2" name="Scripts">
+    <Actions category="Scripts">
+        <text>BetterColorCycler</text>
+
+        <Action name="rotate_c_rel">
+          <text>Rotate Hue Clockwise (Relative)</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="rotate_cc_rel">
+          <text>Rotate Hue Counter-Clockwise (Relative)</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="rotate_c_abs">
+          <text>Rotate Hue Clockwise (Absolute)</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="rotate_cc_abs">
+          <text>Rotate Hue Counter-Clockwise (Absolute)</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="reset_step_counter">
+          <text>Reset Step Counter</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="toggle_fine">
+          <text>Toggle Fine Steps</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="shift_s_pos">
+          <text>Increase Saturation</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="shift_s_neg">
+          <text>Decrease Saturation</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="shift_v_pos">
+          <text>Increase Value</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="shift_v_neg">
+          <text>Decrease Value</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="better_color_cycler_menu">
+          <text>BetterColorCycler</text>
+          <shortcut>none</shortcut>
+        </Action>
+        <Action name="bcs_configure">
+          <text>Configure BetterColorCycler</text>
+          <shortcut>none</shortcut>
+        </Action>
+    </Actions>
+</ActionCollection>
