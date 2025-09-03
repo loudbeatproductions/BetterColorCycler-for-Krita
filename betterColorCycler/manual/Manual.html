@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Better Color Cycler</title>
+</head>
+<body>
+<h2>Better Color Cycler</h2>
+<p> 
+<b>The problem:</b>
+<br>The built-in shortcuts to shift the color hue is too inconsistent.</br>
+The brightness of the color would drift into total darkness after enough full rotations.
+<br>It's impossible to change the color with shortcuts if saturation is 0 until you manually change it.
+</p>
+<b>The solution:</b>
+<br>This plugin adds shortcuts to enhance the ability to rotate the hue of the current foreground color,
+<br>with a fixed angle of rotation and not changing the color's saturation or brightness (value).
+</p>
+Additionally, you can configure how many steps (number of times the shortcuts are triggered) are needed to make a full rotation in the color wheel,
+<br>so you can choose to pick a color of a specific angle if you use a dial accessory or similar.
+</p>
+Example: By default, <code>max_steps</code> is set to 24, because the "Mini KeyDial KD100", takes 24 steps to make a full rotation.
+<br>You can edit this value in the <code>.py</code> file if you use similar accessories.
+</p>
+<b>Extra features:</b>
+<br>Shortcuts to adjust saturation and brightness with a fixed distance, which don't drift.
+</p>
+<h3>Usage</h3>
+<p>
+Once the plugin is installed you can configure shortcuts in krita settings, like you would with other shortcuts.</p>
+
+<b>Relative mode:</b>
+<br>With any color you have currently selected, rotate the hue by a certain degree.
+<br>The default angle is 15° but this can be changed in the <code>.py</code> file.
+</p>
+<b>Absolute mode:</b>
+<br>Calibrate the accessory of choice (turn dial to 12-o'clock position, then use the shortcut to reset the counter. Then set Shortcuts 3 and 4.
+
+<h3>Shortcuts</h3>
+<table>
+<tr><td>Shortcut 1:</td><td>Shift hue counter-clockwise (relative to current color)</td></tr>
+<tr><td>Shortcut 2:</td><td>Shift hue clockwise (relative to current color)</td></tr>
+<tr><td>Shortcut 3:</td><td>Shift hue counter-clockwise (absolute mode)</td></tr>
+<tr><td>Shortcut 4:</td><td>Shift hue clockwise (absolute mode)</td></tr>
+<tr><td>Shortcut 5:</td><td>Reset the step counter (absolute mode)</td></tr>
+<tr><td>Shortcut 6:</td><td>Toggle fine mode</td></tr>
+</table>
+</p>
+Default shortcuts: Ctrl + Shift + 1-6
+</p>
+<h3>Extra Shortcuts</h3>
+<table>
+<tr><td>Shortcut 7:</td><td>Decrease saturation</td></tr>
+<tr><td>Shortcut 8:</td><td>Increase saturation</td></tr>
+<tr><td>Shortcut 9:</td><td>Decrease brightness (value)</td></tr>
+<tr><td>Shortcut 10:</td><td>Increase brightness (value)</td></tr>
+</table>
+
+</body>
+</html>

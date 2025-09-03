@@ -69,6 +69,7 @@ Default shortcuts: Ctrl + Shift + 1-6
 
 # Better Color Cycler (Modifications):
 
+# V 1.0
 - Fix math formula using depercated library.
 - Fix shortcuts not showing.
 - Fix shortcuts group.
@@ -76,6 +77,10 @@ Default shortcuts: Ctrl + Shift + 1-6
 - Added popup showing changes applied.
 - Added a docker panel to configure the amount of steps that takes to travel the full range of the HUE, Saturation, and Value.
 
+# V 2.0
+- Fixed jump to previous storaged color after using color picker then shortcut.
+- Fixed HUE value storage and update.
+- Other fixes.
 
-*Download New Version*
+*Download Latest Version*
 [Download](https://github.com/loudbeatproductions/BetterColorCycler-for-Krita/archive/refs/heads/main.zip)
