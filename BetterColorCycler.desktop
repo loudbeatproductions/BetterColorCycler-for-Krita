@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Service
-ServiceTypes=Krita/PythonPlugin
-X-KDE-Library=BetterColorCycler
-X-Krita-Manual=1
-Name=Better Color Cycler
-Comment=Cycle hue, saturation and value without losing color info
