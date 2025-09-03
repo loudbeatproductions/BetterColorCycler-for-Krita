@@ -18,17 +18,6 @@ show_mesg = True
 
 class BetterColorCycler(krita.Extension):
 
-    # def __init__(self, parent):
-    #     super(BetterColorCycler, self).__init__(parent)
-    #
-    #     appNotifier  = Application.notifier()
-    #     appNotifier.windowCreated.connect(self.loadActions)
-
-    # def __init__(self, parent):
-    #     super(BetterColorCycler, self).__init__(parent)
-    #     appNotifier = Application.notifier()
-    #     appNotifier.windowCreated.connect(self.loadActions)
-    #     appNotifier.activeViewChanged.connect(lambda *_: self.attach_view_notifier())
     def __init__(self, parent):
         super(BetterColorCycler, self).__init__(parent)
 
@@ -65,9 +54,6 @@ class BetterColorCycler(krita.Extension):
         # appNotifier.windowCreated.connect(lambda _: self.attach_view_notifier())
         appNotifier.windowCreated.connect(self.attach_view_notifier)
 
-
-
-
     def updateConfiguration(self, newHueSteps, newSatSteps, newValSteps):
         from PyQt5.QtCore import QSettings
         settings = QSettings()
@@ -86,38 +72,7 @@ class BetterColorCycler(krita.Extension):
 
         self.toast(f"Configuration updated: Hue Steps = {newHueSteps}, Sat Steps = {newSatSteps}, Value Steps = {newValSteps}")
 
-    # def setup(self):
-    #     from PyQt5.QtCore import QSettings
-    #     settings = QSettings()
-    #     # Read values from settings (or use default globals if not set)
-    #     self.max_steps = settings.value("BetterColorCycler/hue_steps", max_steps, type=int)
-    #     self.sat_num_steps = settings.value("BetterColorCycler/sat_steps", 30, type=int)
-    #     self.val_num_steps = settings.value("BetterColorCycler/val_steps", 30, type=int)
-    #
-    #     # Compute step sizes based on the number of steps.
-    #     self.sat_step_size = 255.0 / self.sat_num_steps
-    #     self.val_step_size = 255.0 / self.val_num_steps
-    #
-    #     # Initialize state
-    #     self.abs_step = 0
-    #     self.abs_step_before_fine = 0
-    #     self.prev_col = None
-    #     self.tog_fine = False
-    #     self.h = 0
-    #     self.h_anchor = 0.0
-    #
-    #     # Relative hue stepping setup
-    #     self.rel_max_steps = self.lcm(angle_rel, 360) / angle_rel
-    #     self.rel_revs = self.lcm(angle_rel, 360) / 360
-    #
-    #     # SV-related state
-    #     self.sv = [0, 0]
-    #     self.sv_step = [0, 0]
-    #     self.sv_new_step = [0, 0]
-    #     self.sv_deltas = [0, 0]
-    #     self.sv_prev_mode = None
-    #
-    #     self.attach_view_notifier()
+
     def setup(self):
         """Load settings + compute step sizes."""
         from PyQt5.QtCore import QSettings
@@ -140,38 +95,6 @@ class BetterColorCycler(krita.Extension):
         self.attach_view_notifier()
 
 
-    # def attach_view_notifier(self):
-    #     win = Application.activeWindow()
-    #     if not win:
-    #         return
-    #     view = win.activeView()
-    #     if not view:
-    #         return
-    #     try:
-    #         view.notifier().foregroundColorChanged.disconnect(self.onExternalColorChange)
-    #     except Exception:
-    #         pass
-    #     view.notifier().foregroundColorChanged.connect(self.onExternalColorChange)
-    #     # # Attach notifier to track external color changes
-    #     # window = Application.activeWindow()
-    #     # if window and window.activeView():
-    #     #     view = window.activeView()
-    #     #     view.notifier().foregroundColorChanged.connect(self.onExternalColorChange)
-    # def attach_view_notifier(self):
-    #     """Attach color-change notifier to the active view."""
-    #     win = Application.activeWindow()
-    #     if not win:
-    #         return
-    #     view = win.activeView()
-    #     if not view:
-    #         return
-    #
-    #     # Avoid duplicate connections
-    #     try:
-    #         view.notifier().foregroundColorChanged.disconnect(self.onExternalColorChange)
-    #     except Exception:
-    #         pass
-    #     view.notifier().foregroundColorChanged.connect(self.onExternalColorChange)
     def attach_view_notifier(self, retries=3):
         win = Application.activeWindow()
         if not win:
@@ -194,16 +117,6 @@ class BetterColorCycler(krita.Extension):
         notifier().foregroundColorChanged.connect(self.onExternalColorChange)
 
 
-
-    # def resetAllSV(self, col):
-    #     """Reset both saturation and value step counters to match the given color."""
-    #     self.sv_prev_mode = None
-    #     self.sv = [col.hsvSaturation(), col.value()]
-    #     self.sv_new_step = [
-    #         math.ceil(self.sv[0] / self.sat_step_size),
-    #         math.ceil(self.sv[1] / self.val_step_size)
-    #     ]
-    #     self.sv_step = self.sv_new_step.copy()
     def resetAllSV(self, col):
         """Reset both saturation and value step counters to match the given color."""
         # Safety: ensure setup was run
@@ -227,25 +140,6 @@ class BetterColorCycler(krita.Extension):
         # self.toast(f"Synced to external color {col.name()}")
 
 
-    # def resyncFromColor(self, col):
-    #     """Reset all plugin state from the given QColor."""
-    #     # Reset hue tracking
-    #     self.h = col.hsvHueF()
-    #     self.h_anchor = self.h    # <--- anchor current hue
-    #     self.abs_step = 0
-    #     self.abs_step_before_fine = 0
-    #
-    #     # Reset SV tracking
-    #     self.sv_prev_mode = None
-    #     self.sv = [col.hsvSaturation(), col.value()]
-    #     self.sv_new_step = [
-    #         math.ceil(self.sv[0] / self.sat_step_size),
-    #         math.ceil(self.sv[1] / self.val_step_size)
-    #     ]
-    #     self.sv_step = self.sv_new_step.copy()
-    #
-    #     # Remember this color
-    #     self.prev_col = col
     def resyncFromColor(self, col):
         """Reset all plugin state from the given QColor."""
 
@@ -320,35 +214,6 @@ class BetterColorCycler(krita.Extension):
         self.updateHue(col.hsvHueF(),col.hsvSaturationF())
 
 
-    # def resetSV(self, col, mod):
-    #     """
-    #     Resets the internal step counters for Saturation and Value
-    #     based on the current foreground color.
-    #     """
-    #     self.sv_prev_mode = mod
-    #     self.updateHue(col.hsvHueF(), col.hsvSaturationF())
-    #
-    #     # Capture the current saturation and value (range 0–255)
-    #     self.sv = [col.hsvSaturation(), col.value()]
-    #
-    #     # Safeguard: if the number of steps is not defined, set a default (30 steps)
-    #     if not hasattr(self, 'sat_num_steps'):
-    #         self.sat_num_steps = 30
-    #     if not hasattr(self, 'val_num_steps'):
-    #         self.val_num_steps = 30
-    #
-    #     # Safeguard: if the step sizes are not defined, compute them from the number of steps
-    #     if not hasattr(self, 'sat_step_size'):
-    #         self.sat_step_size = 255.0 / self.sat_num_steps
-    #     if not hasattr(self, 'val_step_size'):
-    #         self.val_step_size = 255.0 / self.val_num_steps
-    #
-    #     # Determine the starting step value for each channel
-    #     self.sv_new_step = [
-    #         math.ceil(self.sv[0] / self.sat_step_size),
-    #         math.ceil(self.sv[1] / self.val_step_size)
-    #     ]
-    #     self.sv_step = self.sv_new_step.copy()
     def resetSV(self, col, mod):
         """Resets the internal step counters for Saturation and Value."""
         self.sv_prev_mode = mod
@@ -374,36 +239,10 @@ class BetterColorCycler(krita.Extension):
         self.sv_step = self.sv_new_step.copy()
 
 
-
     def resetSteps(self):
         self.abs_step = 0
         if (show_mesg):
             self.toast("Step counter has been reset.")
-
-    # def makeStep(self, mode_abs, direction):
-    #     col = self.getCurFGColor()
-    #
-    #     if mode_abs:
-    #         self.abs_step += direction
-    #         sensitivity_used = sensitivity_fine if self.tog_fine else sensitivity
-    #
-    #         # fraction of full circle for current step
-    #         step_fraction = (self.abs_step % (self.max_steps * sensitivity_used)) / (self.max_steps * sensitivity_used)
-    #
-    #         # absolute hue is anchored at last picked color
-    #         new_hue = (self.h_anchor + step_fraction) % 1.0
-    #         newcol = QColor.fromHsvF(new_hue, col.hsvSaturationF(), col.valueF())
-    #
-    #         self.setNewFGColor(newcol)
-    #         self.resetRelMode(newcol)
-    #
-    #     else:
-    #         if self.testColorChanged(col):
-    #             self.resyncFromColor(col)
-    #
-    #         deg = ((direction % (self.rel_max_steps * self.getSensitivity())) / (self.rel_max_steps * self.getSensitivity())) * self.rel_revs
-    #         self.setNewFGColor(self.rotateHue(deg, col, self.h))
-    #         self.resetRelMode(col)
 
 
     def makeStep(self, mode_abs, direction):
